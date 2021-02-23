@@ -1,6 +1,6 @@
 ﻿
 public enum PieceType
 {
-    Pawn, Bishop, Knight, Rook, Queen, King
+    PawnBlack, PawnWhite, BishopBlack, BishopWhite, KnightBlack, KnightWhite, RookBlack, RookWhite, QueenBlack, QueenWhite, KingBlack, KingWhite
 
 }
