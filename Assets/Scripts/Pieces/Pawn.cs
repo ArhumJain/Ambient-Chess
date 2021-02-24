@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Pawn : Piece
 {
-    private bool firstMoveDone = false;
     public override List<Vector2Int> SelectAvailableSquares()
     {
         availableMoves.Clear();
@@ -32,6 +31,7 @@ public class Pawn : Piece
                 continue;
             if (piece != null && !piece.isFromSameTeam(this))
             {
+                // Piece.Destroy(piece);
                 TryToAddMove(nextCoords);
             }
         }

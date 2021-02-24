@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(SquareSelectorCreator))]
 public class Board : MonoBehaviour
 {
     public const int BOARD_SIZE = 8;
@@ -11,8 +11,10 @@ public class Board : MonoBehaviour
     private Piece[,] grid;
     private Piece selectedPiece;
     private ChessGameController chessController;
+    private SquareSelectorCreator squareSelector;
     private void Awake()
     {
+        squareSelector = GetComponent<SquareSelectorCreator>();
         CreateGrid();
     }
     public void SetDependencies(ChessGameController chessController)
@@ -59,10 +61,25 @@ public class Board : MonoBehaviour
     private void SelectPiece(Piece piece)
     {
         selectedPiece = piece;
+        List<Vector2Int> selection = selectedPiece.availableMoves;
+        ShowSelectionSquares(selection);
+
+    }
+    private void ShowSelectionSquares(List<Vector2Int> selection)
+    {
+        Dictionary<Vector3, bool> squareData = new Dictionary<Vector3, bool>();
+        for (int i = 0; i < selection.Count; i++)
+        {
+            Vector3 position = CalculatePositionFromCoords(selection[i]);
+            bool isSquareFree = GetPieceOnSquare(selection[i]) == null;
+            squareData.Add(position, isSquareFree);   
+        }
+        squareSelector.ShowSelection(squareData);
     }
     private void DeselectPiece()
     {
         selectedPiece = null;
+        squareSelector.ClearSelection();
     }
     private void OnSelectedPieceMoved(Vector2Int coords, Piece piece)
     {
@@ -77,9 +94,33 @@ public class Board : MonoBehaviour
     }
     private void UpdateBoardOnPieceMove(Vector2Int newCoords, Vector2Int oldCoords, Piece newPiece, Piece oldPiece)
     {
+        if(GetPieceOnSquare(newCoords) != null && !newPiece.isFromSameTeam(GetPieceOnSquare(newCoords)))
+        {
+            // FadeCoroutine(GetPieceOnSquare(newCoords));
+            Piece.Destroy(GetPieceOnSquare(newCoords).gameObject);
+        }
         grid[oldCoords.x, oldCoords.y] = oldPiece;
         grid[newCoords.x, newCoords.y] = newPiece;
     }
+    // Some fade animation stuff I was trying to get to work
+    // private void FadeCoroutine(Piece piece)
+    // {
+    //     StartCoroutine(DestroyFade(true, piece));
+    // }
+    // IEnumerator DestroyFade(bool fadeAway, Piece piece)
+    // {
+    //     Renderer rend = piece.GetComponent<Renderer>();
+    //     rend.material = piece.team == TeamColor.White ? PieceCreator.blackFadeMaterial : PieceCreator.whiteFadeMaterial;
+    //     Color objectColor = piece.GetComponent<Renderer>().material.color;
+
+    //     for (float i = 1; i >= 0; i -= Time.deltaTime)
+    //     {
+            
+    //         piece.GetComponent<Renderer>().material.color = new Color(objectColor.r, objectColor.g, objectColor.b, i);
+    //         yield return null;
+    //     }
+    //     Piece.Destroy(piece.gameObject);
+    // }
     public Piece GetPieceOnSquare(Vector2Int coords)
     {
         if(CheckIfCoordinatesAreOnBoard(coords))
