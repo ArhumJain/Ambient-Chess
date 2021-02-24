@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5907450477569713742}
   - component: {fileID: 3689285914202109682}
   - component: {fileID: 5417062681525470126}
-  - component: {fileID: 3133428370073837873}
   - component: {fileID: -5723801290569845269}
   - component: {fileID: 5041902146048312955}
+  - component: {fileID: 7444120614708676431}
   m_Layer: 0
   m_Name: PawnBlack
   m_TagString: Untagged
@@ -82,18 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3133428370073837873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7861427056897979516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bd9cea39b0d0946a8f56bac5cd4c25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-5723801290569845269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,3 +107,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableMoves: []
+--- !u!114 &7444120614708676431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7861427056897979516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e852c8450cb4c9f4ab802142165f53af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

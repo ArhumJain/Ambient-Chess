@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4184541929522986815}
   - component: {fileID: 8871414651293805551}
   - component: {fileID: 3294402705719482279}
-  - component: {fileID: 8454869440661244854}
   - component: {fileID: 4742256022078422169}
   - component: {fileID: 5477000587714386256}
+  - component: {fileID: 4584159704624222668}
   m_Layer: 0
   m_Name: KnightWhite
   m_TagString: Untagged
@@ -82,18 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8454869440661244854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33060308233014690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bd9cea39b0d0946a8f56bac5cd4c25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4742256022078422169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,3 +107,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableMoves: []
+--- !u!114 &4584159704624222668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33060308233014690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e852c8450cb4c9f4ab802142165f53af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

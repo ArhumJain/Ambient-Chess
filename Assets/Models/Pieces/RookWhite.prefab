@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 808972839430238793}
   - component: {fileID: 1294689941151033984}
   - component: {fileID: 8456857586085742302}
-  - component: {fileID: -3566671112945511297}
   - component: {fileID: -2009657923177585410}
   - component: {fileID: -3537661191889926595}
+  - component: {fileID: 4474327038745498982}
   m_Layer: 0
   m_Name: RookWhite
   m_TagString: Untagged
@@ -82,18 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-3566671112945511297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2777432649441329005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bd9cea39b0d0946a8f56bac5cd4c25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-2009657923177585410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,3 +107,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableMoves: []
+--- !u!114 &4474327038745498982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777432649441329005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e852c8450cb4c9f4ab802142165f53af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

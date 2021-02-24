@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3072885391250756143}
   - component: {fileID: 2114961239271739918}
   - component: {fileID: 2381094101180236507}
-  - component: {fileID: 3828523670358216134}
   - component: {fileID: 5752930477577281992}
   - component: {fileID: -8848605587924701740}
+  - component: {fileID: 6072489236349348445}
   m_Layer: 0
   m_Name: KingWhite
   m_TagString: Untagged
@@ -83,18 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3828523670358216134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9060607757279825210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bd9cea39b0d0946a8f56bac5cd4c25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5752930477577281992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,3 +108,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableMoves: []
+--- !u!114 &6072489236349348445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9060607757279825210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e852c8450cb4c9f4ab802142165f53af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

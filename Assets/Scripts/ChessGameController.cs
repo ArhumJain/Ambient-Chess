@@ -25,13 +25,15 @@ public class ChessGameController : MonoBehaviour
     }
     private void CreatePlayers()
     {
-        // whitePlayer = new ChessPlayer(TeamColor.White, board);
-        // blackPlayer = new ChessPlayer(TeamColor.Black, board);
+        whitePlayer = new ChessPlayer(TeamColor.White, board);
+        blackPlayer = new ChessPlayer(TeamColor.Black, board);
     }
     // Start is called before the first frame update
     void Start()
     {
         StartNewGame();
+        activePlayer = whitePlayer;
+        GenerateAllPossiblePlayerMoves(activePlayer);
     }
 
     // Update is called once per frame
@@ -40,7 +42,10 @@ public class ChessGameController : MonoBehaviour
         
     }
     private void StartNewGame(){
+        board.SetDependencies(this);
         CreatePiecesFromLayout(startingBoardLayout);
+        activePlayer = whitePlayer;
+        GenerateAllPossiblePlayerMoves(activePlayer);
     }
     private void CreatePiecesFromLayout(BoardLayout layout)
     {
@@ -62,5 +67,33 @@ public class ChessGameController : MonoBehaviour
 
         Material teamMaterial = pieceCreator.GetTeamMaterial(team);
         newPiece.SetMaterial(teamMaterial);
+        board.SetPieceOnBoard(squareCoords, newPiece);
+
+        ChessPlayer currentPlayer = team == TeamColor.White ? whitePlayer : blackPlayer;
+        currentPlayer.AddPiece(newPiece);
+    }
+    private void GenerateAllPossiblePlayerMoves(ChessPlayer player)
+    {
+        player.GenerateAllPossibleMoves();
+    }
+    public bool IsTeamTurnActive(TeamColor team)
+    {
+        return activePlayer.team == team;
+    }
+    public void EndTurn()
+    {
+        Debug.Log("ENDING TURN!");
+        GenerateAllPossiblePlayerMoves(activePlayer);
+        GenerateAllPossiblePlayerMoves(GetOpponentToPlayer(activePlayer));
+        ChangeActiveTeam();
+        Debug.Log(activePlayer.team);
+    }
+    private void ChangeActiveTeam()
+    {
+        activePlayer = activePlayer == whitePlayer ? blackPlayer : whitePlayer;
+    }
+    private ChessPlayer GetOpponentToPlayer(ChessPlayer player)
+    {
+        return player == whitePlayer ? blackPlayer : whitePlayer;
     }
 }

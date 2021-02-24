@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7709455263508040784}
   - component: {fileID: 8415402732843473349}
   - component: {fileID: 2080103436848693487}
-  - component: {fileID: 38571670314009032}
   - component: {fileID: 1597283252052823582}
   - component: {fileID: 6907553356686745610}
+  - component: {fileID: 287084102028750365}
   m_Layer: 0
   m_Name: QueenBlack
   m_TagString: Untagged
@@ -83,18 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &38571670314009032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4913989151318118012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bd9cea39b0d0946a8f56bac5cd4c25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1597283252052823582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,3 +108,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableMoves: []
+--- !u!114 &287084102028750365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913989151318118012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e852c8450cb4c9f4ab802142165f53af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
