@@ -7,12 +7,12 @@ public class SquareSelectorCreator : MonoBehaviour
     [SerializeField] private Material freeSquareMaterial;
     [SerializeField] private Material opponentSquareMaterial;
     [SerializeField] private GameObject selectorPrefab;
-
+    [SerializeField] private AudioOutputController audioOutput;
     private List<GameObject> instantiatedSelectors = new List<GameObject>();
-
     public void ShowSelection(Dictionary<Vector3, bool> squareData)
     {
         ClearSelection();
+        audioOutput.PlaySelectorShine();
         foreach(var data in squareData)
         {
             Quaternion rotation = Quaternion.Euler (90, 0, 0);

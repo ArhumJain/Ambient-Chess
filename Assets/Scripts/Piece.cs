@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(IObjectTweener))]
 [RequireComponent(typeof(MaterialSetter))]
+[RequireComponent(typeof(AudioOutputController))]
 public abstract class Piece : MonoBehaviour
 {
     private MaterialSetter materialSetter;
@@ -13,6 +14,7 @@ public abstract class Piece : MonoBehaviour
     public bool hasMoved {get; private set;}
     public List<Vector2Int> availableMoves;
     private IObjectTweener tweener;
+    private AudioOutputController audioOutput;
     public abstract List<Vector2Int> SelectAvailableSquares();
 
     private void Awake()
@@ -20,6 +22,7 @@ public abstract class Piece : MonoBehaviour
         availableMoves = new List<Vector2Int>();
         tweener = GetComponent<IObjectTweener>();
         materialSetter = GetComponent<MaterialSetter>();
+        audioOutput = GetComponent<AudioOutputController>();
         hasMoved = false;
     }
     public void SetMaterial(Material material)
@@ -51,17 +54,11 @@ public abstract class Piece : MonoBehaviour
     }
     public virtual void MovePiece(Vector2Int coords)
     {
-        // Debug.Log("DEBUGGING THESE COORDS HERE " + coords);
-        // Debug.Log("PIECE ON THESE COORDS IS: " + board.GetPieceOnSquare(coords));
         Vector3 targetPosition = board.CalculatePositionFromCoords(coords);
-        // if(!isFromSameTeam(board.GetPieceOnSquare(coords)) && board.GetPieceOnSquare(coords) != null)
-        // {
-        //     Debug.Log("DESTROYING!");
-        //     Piece.Destroy(board.GetPieceOnSquare(coords));
-        // }
         occupiedSquare = coords;
         hasMoved = true;
         tweener.MoveTo(transform, targetPosition);
+        audioOutput.PlayMoveSound();
     }
     protected void TryToAddMove(Vector2Int coords)
     {

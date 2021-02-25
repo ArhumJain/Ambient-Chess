@@ -5,11 +5,14 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(PieceCreator))]
+[RequireComponent(typeof(AudioOutputController))]
+// [RequireComponent(typeof(AudioOutputController))]
 public class ChessGameController : MonoBehaviour
 {
     private enum GameState {Init, Play, Finished}
     [SerializeField] private BoardLayout startingBoardLayout;
     [SerializeField] private Board board;
+    [SerializeField] private AudioOutputController audioOutput;
     private PieceCreator pieceCreator;
     private ChessPlayer whitePlayer;
     private ChessPlayer blackPlayer;
@@ -66,13 +69,11 @@ public class ChessGameController : MonoBehaviour
             Vector2Int squareCoords = layout.GetSquareCoordsAtindex(i);
             TeamColor team = layout.GetSquareTeamColorAtIndex(i);
             string typeName = layout.GetSquarePieceNameAtIndex(i);
-            // Type type = Type.GetType("RookWhite");
-            // Debug.Log(type);
             CreatePieceAndInitialize(squareCoords, team, typeName);
 
         }
     }
-    private void CreatePieceAndInitialize(Vector2Int squareCoords, TeamColor team, string type)
+    public void CreatePieceAndInitialize(Vector2Int squareCoords, TeamColor team, string type)
     {
         Piece newPiece = pieceCreator.CreatePiece(type).GetComponent<Piece>();
         newPiece.SetData(squareCoords, team, board);
@@ -129,6 +130,7 @@ public class ChessGameController : MonoBehaviour
         ChessPlayer pieceOwner = (piece.team == TeamColor.White) ? whitePlayer : blackPlayer;
         pieceOwner.RemovePiece(piece);
         Destroy(piece.gameObject);
+        audioOutput.PlayCaptureSound();
     }
     private void EndGame()
     {
@@ -143,9 +145,6 @@ public class ChessGameController : MonoBehaviour
     {
         return player == whitePlayer ? blackPlayer : whitePlayer;
     }
-    // public void RemoveMovesEnablingAttackOnPieceOfType<T>(Piece piece) where T : Piece{
-    //     activePlayer.RemoveMovesEnablingAttackOnPiece
-    // }
     public void RemoveMovesEnablingAttackOnPieceOfType<T>(Piece piece) where T : Piece
 	{
         activePlayer.RemoveMovesEnablingAttackOnPiece<T>(GetOpponentToPlayer(activePlayer), piece);

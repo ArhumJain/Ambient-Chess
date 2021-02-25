@@ -21,7 +21,6 @@ public class King : Piece
         rightCastlingMove = new Vector2Int(-1, -1);
         if (hasMoved)
             return;
-        Debug.Log("HAS NOT MOVED YET!");
         leftRook = GetPieceInDirection<Rook>(team, Vector2Int.left);
         if(leftRook && !leftRook.hasMoved)
         {

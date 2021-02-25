@@ -62,6 +62,15 @@ public class Board : MonoBehaviour
                 SelectPiece(piece);
         }
     }
+    public void PromotePiece(Piece piece)
+    {
+        TakePiece(piece);
+        if (piece.team == TeamColor.White)
+            chessController.CreatePieceAndInitialize(piece.occupiedSquare, piece.team, "QueenWhite");
+        else
+            chessController.CreatePieceAndInitialize(piece.occupiedSquare, piece.team, "QueenBlack");
+        
+    }
     private void SelectPiece(Piece piece)
     {
         chessController.RemoveMovesEnablingAttackOnPieceOfType<King>(piece);
@@ -116,33 +125,9 @@ public class Board : MonoBehaviour
     }
     public void UpdateBoardOnPieceMove(Vector2Int newCoords, Vector2Int oldCoords, Piece newPiece, Piece oldPiece)
     {
-        // if(GetPieceOnSquare(newCoords) != null && !newPiece.isFromSameTeam(GetPieceOnSquare(newCoords)))
-        // {
-        //     // FadeCoroutine(GetPieceOnSquare(newCoords));
-        //     Piece.Destroy(GetPieceOnSquare(newCoords).gameObject);
-        // }
         grid[oldCoords.x, oldCoords.y] = oldPiece;
         grid[newCoords.x, newCoords.y] = newPiece;
     }
-    // Some fade animation stuff I was trying to get to work
-    // private void FadeCoroutine(Piece piece)
-    // {
-    //     StartCoroutine(DestroyFade(true, piece));
-    // }
-    // IEnumerator DestroyFade(bool fadeAway, Piece piece)
-    // {
-    //     Renderer rend = piece.GetComponent<Renderer>();
-    //     rend.material = piece.team == TeamColor.White ? PieceCreator.blackFadeMaterial : PieceCreator.whiteFadeMaterial;
-    //     Color objectColor = piece.GetComponent<Renderer>().material.color;
-
-    //     for (float i = 1; i >= 0; i -= Time.deltaTime)
-    //     {
-            
-    //         piece.GetComponent<Renderer>().material.color = new Color(objectColor.r, objectColor.g, objectColor.b, i);
-    //         yield return null;
-    //     }
-    //     Piece.Destroy(piece.gameObject);
-    // }
     public Piece GetPieceOnSquare(Vector2Int coords)
     {
         if(CheckIfCoordinatesAreOnBoard(coords))
