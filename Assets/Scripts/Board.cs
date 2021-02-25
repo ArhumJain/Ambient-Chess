@@ -37,6 +37,10 @@ public class Board : MonoBehaviour
     }
     public void OnSquareSelected(Vector3 inputPosition)
     {
+        if (!chessController.IsGameInProgress())
+        {
+            return;
+        }
         Vector2Int coords = CalculateCoordsFromPosition(inputPosition);
         Debug.Log(coords);
         Piece piece = GetPieceOnSquare(coords);
@@ -60,6 +64,7 @@ public class Board : MonoBehaviour
     }
     private void SelectPiece(Piece piece)
     {
+        chessController.RemoveMovesEnablingAttackOnPieceOfType<King>(piece);
         selectedPiece = piece;
         List<Vector2Int> selection = selectedPiece.availableMoves;
         ShowSelectionSquares(selection);
@@ -83,22 +88,39 @@ public class Board : MonoBehaviour
     }
     private void OnSelectedPieceMoved(Vector2Int coords, Piece piece)
     {
+        TryToTakeOppositePiece(coords);   
         UpdateBoardOnPieceMove(coords, piece.occupiedSquare, piece, null);
         selectedPiece.MovePiece(coords);
         DeselectPiece();
         EndTurn();
     }
+    private void TryToTakeOppositePiece(Vector2Int coords)
+    {
+        Piece piece = GetPieceOnSquare(coords);
+        if(piece != null && !selectedPiece.isFromSameTeam(piece))
+        {
+            TakePiece(piece);
+        }
+    }
+    private void TakePiece(Piece piece)
+    {
+        if(piece)
+        {
+            grid[piece.occupiedSquare.x, piece.occupiedSquare.y] = null;
+            chessController.OnPieceRemoved(piece);
+        }
+    }
     private void EndTurn()
     {
         chessController.EndTurn();
     }
-    private void UpdateBoardOnPieceMove(Vector2Int newCoords, Vector2Int oldCoords, Piece newPiece, Piece oldPiece)
+    public void UpdateBoardOnPieceMove(Vector2Int newCoords, Vector2Int oldCoords, Piece newPiece, Piece oldPiece)
     {
-        if(GetPieceOnSquare(newCoords) != null && !newPiece.isFromSameTeam(GetPieceOnSquare(newCoords)))
-        {
-            // FadeCoroutine(GetPieceOnSquare(newCoords));
-            Piece.Destroy(GetPieceOnSquare(newCoords).gameObject);
-        }
+        // if(GetPieceOnSquare(newCoords) != null && !newPiece.isFromSameTeam(GetPieceOnSquare(newCoords)))
+        // {
+        //     // FadeCoroutine(GetPieceOnSquare(newCoords));
+        //     Piece.Destroy(GetPieceOnSquare(newCoords).gameObject);
+        // }
         grid[oldCoords.x, oldCoords.y] = oldPiece;
         grid[newCoords.x, newCoords.y] = newPiece;
     }

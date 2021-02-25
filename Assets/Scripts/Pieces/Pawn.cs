@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Pawn : Piece
 {
+    public bool isEnPassantable = false;
     public override List<Vector2Int> SelectAvailableSquares()
     {
         availableMoves.Clear();
 
         Vector2Int direction = team == TeamColor.White ? Vector2Int.up : Vector2Int.down;
-        float range = hasMoved ? 1 : 2;
+        float range = hasMoved ? 1 : 2; 
         for (int i = 1; i <= range; i++)
         {
             Vector2Int nextCoords = occupiedSquare + direction * i;

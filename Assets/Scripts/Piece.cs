@@ -30,6 +30,17 @@ public abstract class Piece : MonoBehaviour
         }
         materialSetter.SetSingleMaterial(material);
     }
+    public bool IsAttackingPieceOfType<T>() where T : Piece
+    {
+        foreach(var square in availableMoves)
+        {
+            if(board.GetPieceOnSquare(square) is T)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public bool isFromSameTeam(Piece piece)
     {
         return team == piece.team;
