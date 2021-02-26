@@ -14,10 +14,11 @@ public class ChessGameController : MonoBehaviour
     [SerializeField] private Board board;
     [SerializeField] private AudioOutputController audioOutput;
     private PieceCreator pieceCreator;
-    private ChessPlayer whitePlayer;
-    private ChessPlayer blackPlayer;
-    private ChessPlayer activePlayer;
     private GameState state;
+    public ChessPlayer whitePlayer;
+    public ChessPlayer blackPlayer;
+    public ChessPlayer activePlayer;
+    
     
 
     private void Awake()
@@ -37,16 +38,16 @@ public class ChessGameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartNewGame();
-        activePlayer = whitePlayer;
-        GenerateAllPossiblePlayerMoves(activePlayer);
+        // StartNewGame();
+        // activePlayer = whitePlayer;
+        // GenerateAllPossiblePlayerMoves(activePlayer);
     }
     // Update is called once per frame
     void Update()
     {
-        
+           
     }
-    private void StartNewGame(){
+    public void StartNewGame(){
         SetGameState(GameState.Init);
         board.SetDependencies(this);
         CreatePiecesFromLayout(startingBoardLayout);
@@ -85,7 +86,7 @@ public class ChessGameController : MonoBehaviour
         ChessPlayer currentPlayer = team == TeamColor.White ? whitePlayer : blackPlayer;
         currentPlayer.AddPiece(newPiece);
     }
-    private void GenerateAllPossiblePlayerMoves(ChessPlayer player)
+    public void GenerateAllPossiblePlayerMoves(ChessPlayer player)
     {
         player.GenerateAllPossibleMoves();
     }
