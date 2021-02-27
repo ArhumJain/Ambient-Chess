@@ -6562,7 +6562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -10160,6 +10160,7 @@ GameObject:
   - component: {fileID: 930636902}
   - component: {fileID: 930636901}
   - component: {fileID: 930636900}
+  - component: {fileID: 930636903}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10225,13 +10226,32 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930636899}
-  m_LocalRotation: {x: 0.4923123, y: -0, z: -0, w: 0.87041867}
-  m_LocalPosition: {x: -0.06, y: 7.97, z: -4.88}
+  m_LocalRotation: {x: -0.4078872, y: -0, z: -0, w: 0.91303235}
+  m_LocalPosition: {x: -0.06, y: 48.87, z: -4.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 58.985004, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -48.144, y: 0, z: 0}
+--- !u!95 &930636903
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930636899}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e5edcce1ad8f42e4aaa9f938d1713381, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &934542249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18205,7 +18225,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575097892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -418.96}
+  m_LocalPosition: {x: 0, y: 0, z: -268.6}
   m_LocalScale: {x: 0.18463, y: 0.18463, z: 0.18463}
   m_Children:
   - {fileID: 63456019}
@@ -18323,6 +18343,7 @@ MonoBehaviour:
   hoverSound: {fileID: 1575097899}
   defaultScale: {x: 0, y: 0, z: 0}
   chessController: {fileID: 1801350145}
+  gameStartAnimation: {fileID: 930636903}
 --- !u!82 &1575097899
 AudioSource:
   m_ObjectHideFlags: 0
@@ -23040,6 +23061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bottomLeftSquareTransform: {fileID: 418250043}
   squareSize: 1.01
+  chessController: {fileID: 0}
 --- !u!114 &2072142555
 MonoBehaviour:
   m_ObjectHideFlags: 0

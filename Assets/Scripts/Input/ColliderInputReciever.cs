@@ -10,7 +10,6 @@ public class ColliderInputReciever : InputReciever
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("CLICKING");
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out hit))

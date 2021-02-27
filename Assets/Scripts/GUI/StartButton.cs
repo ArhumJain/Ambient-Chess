@@ -6,6 +6,7 @@ using DG.Tweening;
 public class StartButton : ButtonBehavior
 {
     [SerializeField] private ChessGameController chessController;
+    [SerializeField] private Animator gameStartAnimation;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,22 +15,10 @@ public class StartButton : ButtonBehavior
     public override void OnClick()
     {
         chessController.StartNewGame();
-        Debug.Log("MADE IT HERE ATLEAST!");
         chessController.activePlayer = chessController.whitePlayer;
         chessController.GenerateAllPossiblePlayerMoves(chessController.activePlayer);
+        gameStartAnimation.SetBool("changeViewToChessBoard", true);
         FadeOut();
-        gameObject.SetActive(false);
-        // Destroy(gameObject);
-        
+        gameObject.SetActive(false);        
     }
-    // public void OnPointerEnter(PointerEventData eventData)
-    // {
-    //     transform.localScale = new Vector3(0.2f,0.2f,0.2f);
-    //     hoverSound.Play();
-    //     Debug.Log("LOLOLOLOLOLOLOLOL");
-    // }
-    // public void OnPointerExit(PointerEventData eventData)
-    // {
-    //     this.transform.localScale = defaultScale;
-    // }
 }

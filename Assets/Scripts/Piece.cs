@@ -13,9 +13,11 @@ public abstract class Piece : MonoBehaviour
     public TeamColor team {get; set;}
     public bool hasMoved {get; private set;}
     public List<Vector2Int> availableMoves;
+    public bool canDoEnPassant;
     private IObjectTweener tweener;
     private AudioOutputController audioOutput;
     public abstract List<Vector2Int> SelectAvailableSquares();
+    public bool isEnPassantable = false;
 
     private void Awake()
     {

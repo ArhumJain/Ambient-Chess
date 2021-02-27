@@ -35,6 +35,10 @@ public class ChessPlayer
         {
             if (board.HasPiece(piece))
             {
+                if(board.chessController.activePlayer.team != this.team)
+                {
+                    piece.isEnPassantable = false;
+                }
                 piece.SelectAvailableSquares();
             }
         }

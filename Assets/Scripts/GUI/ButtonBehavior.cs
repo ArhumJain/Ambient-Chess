@@ -27,7 +27,7 @@ public abstract class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPoi
     }
     public abstract void OnClick();
     protected void Enlarge(){
-        transform.DOScale(new Vector3(0.2f,0.2f,0.2f), 0.01f);
+        transform.DOScale(defaultScale + new Vector3(0.2f,0.2f,0.2f), 0.01f);
     }
     protected void FadeOut()
     {

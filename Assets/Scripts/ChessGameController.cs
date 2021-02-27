@@ -35,18 +35,6 @@ public class ChessGameController : MonoBehaviour
         whitePlayer = new ChessPlayer(TeamColor.White, board);
         blackPlayer = new ChessPlayer(TeamColor.Black, board);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        // StartNewGame();
-        // activePlayer = whitePlayer;
-        // GenerateAllPossiblePlayerMoves(activePlayer);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-           
-    }
     public void StartNewGame(){
         SetGameState(GameState.Init);
         board.SetDependencies(this);
@@ -96,7 +84,6 @@ public class ChessGameController : MonoBehaviour
     }
     public void EndTurn()
     {
-        Debug.Log("ENDING TURN!");
         GenerateAllPossiblePlayerMoves(activePlayer);
         GenerateAllPossiblePlayerMoves(GetOpponentToPlayer(activePlayer));
         if (CheckIfGameIsFinished())
@@ -105,7 +92,6 @@ public class ChessGameController : MonoBehaviour
         }
         else
             ChangeActiveTeam();
-        Debug.Log(activePlayer.team);
     }
     private bool CheckIfGameIsFinished()
     {

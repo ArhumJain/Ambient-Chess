@@ -10,7 +10,7 @@ public class Board : MonoBehaviour
 
     private Piece[,] grid;
     private Piece selectedPiece;
-    private ChessGameController chessController;
+    public ChessGameController chessController;
     private SquareSelectorCreator squareSelector;
     private void Awake()
     {
@@ -42,9 +42,7 @@ public class Board : MonoBehaviour
             return;
         }
         Vector2Int coords = CalculateCoordsFromPosition(inputPosition);
-        Debug.Log(coords);
         Piece piece = GetPieceOnSquare(coords);
-        Debug.Log(piece);
         if (selectedPiece)
         {
             if(piece != null && selectedPiece == piece)
@@ -97,7 +95,23 @@ public class Board : MonoBehaviour
     }
     private void OnSelectedPieceMoved(Vector2Int coords, Piece piece)
     {
+        System.Type pawn = typeof(Pawn);
+        if(piece.GetType() == pawn)
+        {
+            int offset = piece.team == TeamColor.White ? -1 : 1;
+            try{
+                if(GetPieceOnSquare(new Vector2Int(coords.x, coords.y+offset)) != null && GetPieceOnSquare(new Vector2Int(coords.x, coords.y+offset)).GetType() == pawn && piece.canDoEnPassant)
+                {
+                    TryToTakeOppositePiece(new Vector2Int(coords.x, coords.y+offset));
+                    piece.canDoEnPassant = true;
+                }
+            }
+            catch
+            {   
+            }
+        }
         TryToTakeOppositePiece(coords);   
+        piece.canDoEnPassant = false;
         UpdateBoardOnPieceMove(coords, piece.occupiedSquare, piece, null);
         selectedPiece.MovePiece(coords);
         DeselectPiece();
