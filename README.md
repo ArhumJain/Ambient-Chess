@@ -4,4 +4,4 @@ The links to the full build (Executable and all) can be found [here](https://dri
 
 Let me know if you have any suggestions I'll consider adding them in the future! :) 
 
-# [Demo](https://youtu.be/hHCmnpWGm_c)
+# [Video](https://youtu.be/hHCmnpWGm_c)
